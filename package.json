@@ -16,9 +16,10 @@
   "repository": "github:mdopp/simple-sonoff-server",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-     "start": "sonoff.server.module.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sonoff.server.module.js"
   },
+  
   "keywords": [
     "sonoff"
   ],
