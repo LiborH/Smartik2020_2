@@ -7,6 +7,6 @@
         "IP": "192.168.178.31",
         "httpPort": 1080,
         "httpsPort": 1081,
-        "websocketPort": 443
+        "websocketPort": 1443
     }
 }
