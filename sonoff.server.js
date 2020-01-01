@@ -38,7 +38,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 var httpServer = http.createServer(server)
 
 httpServer.listen(config.server.httpPort, function () {
-    log.log('API Server Started On Port %d', config.server.httpPort);
+    log.log('Sonoff.server.js / API Server Started On Port %d', config.server.httpPort);
 });
 
 //returns an simple 0 or 1 for a known device
