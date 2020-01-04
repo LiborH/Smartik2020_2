@@ -4,7 +4,7 @@
         "password": "###########"
     },
     "server": {
-        "IP": "127.0.0.1",
+        "IP": "172.30.165.88",
         "httpPort": 1080,
         "httpsPort": 1081,
         "websocketPort": 1443
