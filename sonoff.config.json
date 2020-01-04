@@ -4,7 +4,7 @@
         "password": "###########"
     },
     "server": {
-        "IP": "0.0.0.0",
+        "IP": "443-smartik.apps.us-west-1.starter.openshift-online.com",
         "httpPort": 1080,
         "httpsPort": 1081,
         "websocketPort": 443
