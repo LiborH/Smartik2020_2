@@ -119,7 +119,7 @@ module.exports.createServer = function (config) {
         log.log('sonoff.server.module.js / SONOFF Server Started On Port %d', config.server.httpsPort);
     });
 
-    // Register routes
+    log.log(' Register routes 1');
     server.post('/dispatch/device', function (req, res) {
         log.log('REQ | %s | %s ', req.method, req.url);
         log.trace('REQ | %s', JSON.stringify(req.body));
@@ -132,6 +132,7 @@ module.exports.createServer = function (config) {
     });
 
     // Register routes
+    log.log(' Register routes 2');
     server.get('/', function (req, res) {
         log.log('REQ | %s | %s ', req.method, req.url);
         res.send('OK');
@@ -145,6 +146,8 @@ module.exports.createServer = function (config) {
         key: config.server.privateKey,
         cert: config.server.certificate
     };
+    
+    log.log(' Sonoff server');
 
     const wsServer = ws.createServer(wsOptions, function (conn) {
         log.log("WS | Server is up %s:%s to %s:%s", config.server.IP, config.server.websocketPort, conn.socket.remoteAddress, conn.socket.remotePort);
