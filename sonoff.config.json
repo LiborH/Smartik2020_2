@@ -7,6 +7,6 @@
         "IP": "0.0.0.0",
         "httpPort": 1080,
         "httpsPort": 1081,
-        "websocketPort": 1443
+        "websocketPort": 443
     }
 }
