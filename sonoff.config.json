@@ -6,7 +6,7 @@
     "server": {
         "IP": "172.30.165.88",
         "httpPort": 1080,
-        "httpsPort": 1081,
-        "websocketPort": 1083
+        "httpsPort": 1026,
+        "websocketPort": 1029
     }
 }
