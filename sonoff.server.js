@@ -16,6 +16,8 @@ config.logger = {
     debug: console.debug,
 };
 
+log.log('Port and IP initialization');
+
 if (process.env.HTTP_PORT !== undefined)
     config.server.httpPort = process.env.HTTP_PORT;
 if (process.env.HTTPS_PORT !== undefined)
@@ -25,6 +27,7 @@ if (process.env.WEBSOCKET_PORT !== undefined)
 if (process.env.SERVER_IP !== undefined)
     config.server.IP = process.env.SERVER_IP;
 
+log.log('Server IP adress %s', process.env.SERVER_IP);
 
 const log = config.logger;
 
@@ -38,6 +41,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 var httpServer = http.createServer(server)
 
 httpServer.listen(config.server.httpPort, function () {
+    log.log('Server IP adress %s', config.server.IP);
     log.log('Sonoff.server.js / API Server Started On Port %d', config.server.httpPort);
 });
 
