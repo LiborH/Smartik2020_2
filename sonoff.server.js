@@ -16,8 +16,6 @@ config.logger = {
     debug: console.debug,
 };
 
-log.log('Port and IP initialization');
-
 if (process.env.HTTP_PORT !== undefined)
     config.server.httpPort = process.env.HTTP_PORT;
 if (process.env.HTTPS_PORT !== undefined)
