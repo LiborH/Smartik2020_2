@@ -27,7 +27,7 @@ if (process.env.SERVER_IP !== undefined)
 
 const log = config.logger;
 
-log.log('Server IP adress %s', process.env.SERVER_IP);
+log.log('Server IP adress %s', config.server.IP);
 
 // call sonoff server for device handling 
 var devices = sonoffServer.createServer(config);
