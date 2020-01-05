@@ -101,6 +101,7 @@ module.exports.createServer = function (config) {
     var server = express();
     var bodyParser = require('body-parser')
     var https = require('https');
+    var http = require('http');
 
     // Register body-parser
     server.use(bodyParser.json());
