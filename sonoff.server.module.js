@@ -101,6 +101,7 @@ module.exports.createServer = function (config) {
     var server = express();
     var bodyParser = require('body-parser')
     var https = require('https');
+    var http = require('http');
 
     // Register body-parser
     server.use(bodyParser.json());
@@ -113,8 +114,10 @@ module.exports.createServer = function (config) {
         rejectUnauthorized: false
     };
 
-    var httpsServer = https.createServer(credentials, server);
+    //var httpsServer = https.createServer(credentials, server);
+    var httpsServer = http.createServer(server);
 
+    
     httpsServer.listen(config.server.httpsPort, function () {
         log.log('sonoff.server.module.js / SONOFF Server Started On Port %d', config.server.httpsPort);
     });

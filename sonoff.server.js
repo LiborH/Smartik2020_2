@@ -25,8 +25,9 @@ if (process.env.WEBSOCKET_PORT !== undefined)
 if (process.env.SERVER_IP !== undefined)
     config.server.IP = process.env.SERVER_IP;
 
-
 const log = config.logger;
+
+log.log('Server IP adress %s', config.server.IP);
 
 // call sonoff server for device handling 
 var devices = sonoffServer.createServer(config);
@@ -38,6 +39,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 var httpServer = http.createServer(server)
 
 httpServer.listen(config.server.httpPort, function () {
+    log.log('Server IP adress %s', config.server.IP);
     log.log('Sonoff.server.js / API Server Started On Port %d', config.server.httpPort);
 });
 
