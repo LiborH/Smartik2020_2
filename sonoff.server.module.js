@@ -154,7 +154,15 @@ module.exports.createServer = function (config) {
     };
     
     log.log(' Sonoff server');
+    
+    
+    const fs = require('fs');
+     
+    
+    wsOptions.key = fs.readFileSync(path.resolve(__dirname, './certs/domain-key.txt'));
+    wsOptions.certificate = fs.readFileSync(path.resolve(__dirname, './certs/domain-crt.txt'));
 
+    
     const wsServer = ws.createServer(wsOptions, function (conn) {
         log.log("WS | Server is up %s:%s to %s:%s", config.server.IP, config.server.websocketPort, conn.socket.remoteAddress, conn.socket.remotePort);
 
