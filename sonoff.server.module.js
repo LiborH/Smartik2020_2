@@ -143,9 +143,9 @@ module.exports.createServer = function (config) {
 
     // Register routes
     log.log(' Register routes 2');
-    server.get('/.well-known/acme-challenge/wvvFjt0ihZWKdy64lQpFddrx0bhDa0tyb7v2DOdo208', function (req, res) {
+    server.get('/.well-known/acme-challenge/9MMV9sogfcKP7Du0X3pD6JhYPTUIp1DTDBfWf_UPlUw', function (req, res) {
         log.log('REQ | %s | %s ', req.method, req.url);
-        res.send(' wvvFjt0ihZWKdy64lQpFddrx0bhDa0tyb7v2DOdo208.WEf6mk6sUeLHytpk4VwNxYSLnJ5_lNm-7ogqxbiSUiQ');
+        res.send('9MMV9sogfcKP7Du0X3pD6JhYPTUIp1DTDBfWf_UPlUw.WEf6mk6sUeLHytpk4VwNxYSLnJ5_lNm-7ogqxbiSUiQ');
     });
 
     // ----------- sonoff server ------------------------
