@@ -114,11 +114,12 @@ module.exports.createServer = function (config) {
         rejectUnauthorized: false
     };
 
-    //var httpsServer = https.createServer(credentials, server);
-    var httpsServer = http.createServer(server);
+    var httpsServer = https.createServer(credentials, server);
+    //var httpsServer = http.createServer(server);
 
     
-    httpsServer.listen(config.server.httpsPort, function () {
+    httpsServer.listen(config.server.httpsPort, function (err) {
+        log.log(JSON.stringify(err));
         log.log('sonoff.server.module.js / SONOFF Server Started On Port %d', config.server.httpsPort);
     });
 
