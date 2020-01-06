@@ -146,10 +146,10 @@ module.exports.createServer = function (config) {
     // this is the replacement for the SONOFF cloud!
     var wsOptions = {
         secure: true,
-        //key: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt')),
-        //cert: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'))
-        key: config.server.privateKey,
-        cert: config.server.certificate
+        key: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt')),
+        cert: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'))
+        //key: config.server.privateKey,
+        //cert: config.server.certificate
     };
     
     log.log(' Sonoff server');
