@@ -146,9 +146,9 @@ module.exports.createServer = function (config) {
     // setup a server, that will respond to the SONOFF requests
     // this is the replacement for the SONOFF cloud!
     var wsOptions = {
-        secure: true,
-        key: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt')),
-        cert: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'))
+        //secure: true,
+        //key: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt')),
+        //cert: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'))
         //key: config.server.privateKey,
         //cert: config.server.certificate
     };
