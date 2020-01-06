@@ -114,8 +114,8 @@ module.exports.createServer = function (config) {
         rejectUnauthorized: false
     };
 
-    var httpsServer = https.createServer(credentials, server);
-    //var httpsServer = http.createServer(server);
+    //var httpsServer = https.createServer(credentials, server);
+    var httpsServer = http.createServer(server);
 
     
     httpsServer.listen(config.server.httpsPort, function () {
