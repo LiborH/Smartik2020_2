@@ -118,8 +118,7 @@ module.exports.createServer = function (config) {
     //var httpsServer = http.createServer(server);
 
     
-    httpsServer.listen(config.server.httpsPort, function (err) {
-        log.log(JSON.stringify(err));
+    httpsServer.listen(config.server.httpsPort, function () {
         log.log('sonoff.server.module.js / SONOFF Server Started On Port %d', config.server.httpsPort);
     });
 
@@ -146,11 +145,11 @@ module.exports.createServer = function (config) {
     // setup a server, that will respond to the SONOFF requests
     // this is the replacement for the SONOFF cloud!
     var wsOptions = {
-        //secure: true,
+        secure: true,
         //key: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt')),
         //cert: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'))
-        //key: config.server.privateKey,
-        //cert: config.server.certificate
+        key: config.server.privateKey,
+        cert: config.server.certificate
     };
     
     log.log(' Sonoff server');
