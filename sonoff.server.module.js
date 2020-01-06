@@ -156,9 +156,6 @@ module.exports.createServer = function (config) {
     log.log(' Sonoff server');
     
     
-    const fs = require('fs');
-     
-    
     wsOptions.key = fs.readFileSync(path.resolve(__dirname, './certs/domain-key.txt'));
     wsOptions.certificate = fs.readFileSync(path.resolve(__dirname, './certs/domain-crt.txt'));
 
