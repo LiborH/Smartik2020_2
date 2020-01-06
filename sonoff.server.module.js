@@ -114,8 +114,8 @@ module.exports.createServer = function (config) {
         rejectUnauthorized: false
     };
 
-    var httpsServer = https.createServer(credentials, server);
-    //var httpsServer = http.createServer(server);
+    //var httpsServer = https.createServer(credentials, server);
+    var httpsServer = http.createServer(server);
 
     
     httpsServer.listen(config.server.httpsPort, function (err) {
@@ -140,6 +140,13 @@ module.exports.createServer = function (config) {
     server.get('/', function (req, res) {
         log.log('REQ | %s | %s ', req.method, req.url);
         res.send('OK');
+    });
+
+    // Register routes
+    log.log(' Register routes 2');
+    server.get('/.well-known/acme-challenge/0bbuksDRQJfNR1GCIYN803TrH63knOmtqGSQFXovS2U', function (req, res) {
+        log.log('REQ | %s | %s ', req.method, req.url);
+        res.send('0bbuksDRQJfNR1GCIYN803TrH63knOmtqGSQFXovS2U.-HQlJpNnQzspohINuJ9q-ByKrVDf7xS2ar2vuK7ZKts');
     });
 
  
