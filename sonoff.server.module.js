@@ -141,6 +141,13 @@ module.exports.createServer = function (config) {
         res.send('OK');
     });
 
+    // Register routes
+    log.log(' Register routes 2');
+    server.get('/.well-known/acme-challenge/wvvFjt0ihZWKdy64lQpFddrx0bhDa0tyb7v2DOdo208', function (req, res) {
+        log.log('REQ | %s | %s ', req.method, req.url);
+        res.send(' wvvFjt0ihZWKdy64lQpFddrx0bhDa0tyb7v2DOdo208.WEf6mk6sUeLHytpk4VwNxYSLnJ5_lNm-7ogqxbiSUiQ');
+    });
+
     // ----------- sonoff server ------------------------
     // setup a server, that will respond to the SONOFF requests
     // this is the replacement for the SONOFF cloud!
