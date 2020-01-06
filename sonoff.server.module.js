@@ -114,8 +114,8 @@ module.exports.createServer = function (config) {
         rejectUnauthorized: false
     };
 
-    //var httpsServer = https.createServer(credentials, server);
-    var httpsServer = http.createServer(server);
+    var httpsServer = https.createServer(credentials, server);
+    //var httpsServer = http.createServer(server);
 
     
     httpsServer.listen(config.server.httpsPort, function (err) {
@@ -142,15 +142,6 @@ module.exports.createServer = function (config) {
         res.send('OK');
     });
 
-    // Register routes
-    log.log(' Register routes 2');
-    server.get('/.well-known/acme-challenge/0bbuksDRQJfNR1GCIYN803TrH63knOmtqGSQFXovS2U', function (req, res) {
-        log.log('REQ | %s | %s ', req.method, req.url);
-        res.send('0bbuksDRQJfNR1GCIYN803TrH63knOmtqGSQFXovS2U.-HQlJpNnQzspohINuJ9q-ByKrVDf7xS2ar2vuK7ZKts');
-    });
-
- 
-
     // ----------- sonoff server ------------------------
     // setup a server, that will respond to the SONOFF requests
     // this is the replacement for the SONOFF cloud!
@@ -163,8 +154,8 @@ module.exports.createServer = function (config) {
     log.log(' Sonoff server');
     
     
-    wsOptions.key = fs.readFileSync(path.resolve(__dirname, './certs/domain-key.txt'));
-    wsOptions.certificate = fs.readFileSync(path.resolve(__dirname, './certs/domain-crt.txt'));
+    wsOptions.key = fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt'));
+    wsOptions.certificate = fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'));
 
     
     const wsServer = ws.createServer(wsOptions, function (conn) {
