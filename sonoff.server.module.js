@@ -7,10 +7,10 @@ module.exports.createServer = function (config) {
     const log = config.logger;
 
     if (config.server.privateKey === undefined)
-        config.server.privateKey = fs.readFileSync(path.resolve(__dirname, './certs/server.key'));
+        config.server.privateKey = fs.readFileSync(path.resolve(__dirname, './certs/domain-key.txt'));
 
     if (config.server.certificate === undefined)
-        config.server.certificate = fs.readFileSync(path.resolve(__dirname, './certs/server.crt'));
+        config.server.certificate = fs.readFileSync(path.resolve(__dirname, './certs/domain-crt.txt'));
 
     //set initialized parameters
     var state = {
