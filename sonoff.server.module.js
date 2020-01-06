@@ -114,8 +114,8 @@ module.exports.createServer = function (config) {
         rejectUnauthorized: false
     };
 
-    //var httpsServer = https.createServer(credentials, server);
-    var httpsServer = http.createServer(server);
+    var httpsServer = https.createServer(credentials, server);
+    //var httpsServer = http.createServer(server);
 
     
     httpsServer.listen(config.server.httpsPort, function () {
@@ -141,12 +141,7 @@ module.exports.createServer = function (config) {
         res.send('OK');
     });
 
-    // Register routes
-    log.log(' Register routes 2');
-    server.get('/.well-known/acme-challenge/9MMV9sogfcKP7Du0X3pD6JhYPTUIp1DTDBfWf_UPlUw', function (req, res) {
-        log.log('REQ | %s | %s ', req.method, req.url);
-        res.send('9MMV9sogfcKP7Du0X3pD6JhYPTUIp1DTDBfWf_UPlUw.WEf6mk6sUeLHytpk4VwNxYSLnJ5_lNm-7ogqxbiSUiQ');
-    });
+ 
 
     // ----------- sonoff server ------------------------
     // setup a server, that will respond to the SONOFF requests
