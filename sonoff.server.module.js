@@ -303,7 +303,7 @@ module.exports.createServer = function (config) {
             return "off";
         },
         
-         turnOffDevice: (deviceId, value) => {
+         updateDevice: (deviceId, value) => {
             var d = state.getDeviceById(deviceId);
             if (!d || (typeof d.conn == 'undefined')) return "disconnected";
             state.pushMessage({ action: 'update', value: { switch: value }, target: deviceId });
