@@ -66,7 +66,7 @@ server.get('/devices/:deviceId/switch/:state', function (req, res) {
         res.status(404).send('Sonoff device ' + req.params.deviceId + ' not found');
     } else {
         res.sendStatus(200);
-        devices.updateDevice(req.params.deviceId,req.params.state.toUpperCase());
+        //devices.updateDevice(req.params.deviceId, req.params.state.toUpperCase());
         break;
     }
 });
