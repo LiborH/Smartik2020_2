@@ -7,10 +7,10 @@ module.exports.createServer = function (config) {
     const log = config.logger;
 
     if (config.server.privateKey === undefined)
-        config.server.privateKey = fs.readFileSync(path.resolve(__dirname, './certs/server.key'));
+        config.server.privateKey = fs.readFileSync(path.resolve(__dirname, './certs/domain-key.txt'));
 
     if (config.server.certificate === undefined)
-        config.server.certificate = fs.readFileSync(path.resolve(__dirname, './certs/server.crt'));
+        config.server.certificate = fs.readFileSync(path.resolve(__dirname, './certs/domain-crt.txt'));
 
     //set initialized parameters
     var state = {
@@ -114,8 +114,8 @@ module.exports.createServer = function (config) {
         rejectUnauthorized: false
     };
 
-    //var httpsServer = https.createServer(credentials, server);
-    var httpsServer = http.createServer(server);
+    var httpsServer = https.createServer(credentials, server);
+    //var httpsServer = http.createServer(server);
 
     
     httpsServer.listen(config.server.httpsPort, function () {
@@ -141,6 +141,7 @@ module.exports.createServer = function (config) {
         res.send('OK');
     });
 
+<<<<<<< HEAD
     // Register routes
     log.log(' Register routes 2');
     server.get('/.well-known/acme-challenge/9MMV9sogfcKP7Du0X3pD6JhYPTUIp1DTDBfWf_UPlUw', function (req, res) {
@@ -148,17 +149,26 @@ module.exports.createServer = function (config) {
         res.send(' 9MMV9sogfcKP7Du0X3pD6JhYPTUIp1DTDBfWf_UPlUw.WEf6mk6sUeLHytpk4VwNxYSLnJ5_lNm-7ogqxbiSUiQ');
     });
 
+=======
+>>>>>>> b9e5cc711256e5aa945531cc866f2d7416597810
     // ----------- sonoff server ------------------------
     // setup a server, that will respond to the SONOFF requests
     // this is the replacement for the SONOFF cloud!
     var wsOptions = {
         secure: true,
-        key: config.server.privateKey,
-        cert: config.server.certificate
+        key: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt')),
+        cert: fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'))
+        //key: config.server.privateKey,
+        //cert: config.server.certificate
     };
     
     log.log(' Sonoff server');
+    
+    
+    //wsOptions.key = fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt'));
+    //wsOptions.certificate = fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'));
 
+    
     const wsServer = ws.createServer(wsOptions, function (conn) {
         log.log("WS | Server is up %s:%s to %s:%s", config.server.IP, config.server.websocketPort, conn.socket.remoteAddress, conn.socket.remotePort);
 
