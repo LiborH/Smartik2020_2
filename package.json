@@ -15,7 +15,7 @@
     "request": "^2.83.0",
     "url": "^0.11.0"
   },
-  "repository": "LiborH/Smartik2020_2",
+  "repository": "https://github.com/LiborH/Smartik2020_2",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
