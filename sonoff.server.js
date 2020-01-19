@@ -77,7 +77,8 @@ server.get('/devices/:deviceId/:state', function (req, res) {
                 break;
             default:
                 res.sendStatus(200);
-                devices.updateDevice(req.params.deviceId, req.params.state.toUpperCase());
+                //devices.updateDevice(req.params.deviceId, req.params.state.toUpperCase());
+                devices.turnOnDevice(req.params.deviceId);
                 break;
                 //res.status(404).send('Sonoff device ' + req.params.deviceId + ' can not be switched to "' + req.params.state + '", only "ON" and "OFF" are supported currently');
         }
