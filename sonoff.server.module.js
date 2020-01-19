@@ -302,6 +302,13 @@ module.exports.createServer = function (config) {
             state.pushMessage({ action: 'update', value: { switch: "off" }, target: deviceId });
             return "off";
         },
+        
+         turnOffDevice: (deviceId, value) => {
+            var d = state.getDeviceById(deviceId);
+            if (!d || (typeof d.conn == 'undefined')) return "disconnected";
+            state.pushMessage({ action: 'update', value: { switch: value }, target: deviceId });
+            return "ok";
+        },
 
         registerOnDeviceConnectedListener: (deviceId, listener) => {
             addDeviceListener(state.listeners.onDeviceConnectedListeners, deviceId, listener);
