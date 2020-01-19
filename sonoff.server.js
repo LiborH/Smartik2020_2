@@ -56,21 +56,6 @@ server.get('/devices/:deviceId/status', function (req, res) {
     }
 });
 
-
-//switch the device
-server.get('/devices/:deviceId/switch/:state', function (req, res) {
-    log.log('GET | %s | %s ', req.method, req.url);
-    var d = devices.getDeviceState(req.params.deviceId);
-
-    if (!d || d == "disconnected") {
-        res.status(404).send('Sonoff device ' + req.params.deviceId + ' not found');
-    } else {
-        res.sendStatus(200);
-        //devices.updateDevice(req.params.deviceId, req.params.state.toUpperCase());
-        break;
-    }
-});
-
 //switch the device
 server.get('/devices/:deviceId/:state', function (req, res) {
     log.log('GET | %s | %s ', req.method, req.url);
@@ -91,7 +76,10 @@ server.get('/devices/:deviceId/:state', function (req, res) {
                 devices.turnOffDevice(req.params.deviceId);
                 break;
             default:
-                res.status(404).send('Sonoff device ' + req.params.deviceId + ' can not be switched to "' + req.params.state + '", only "ON" and "OFF" are supported currently');
+                res.sendStatus(200);
+                devices.updateDevice(req.params.deviceId, req.params.state.toUpperCase());
+                break;
+                //res.status(404).send('Sonoff device ' + req.params.deviceId + ' can not be switched to "' + req.params.state + '", only "ON" and "OFF" are supported currently');
         }
     }
 });
