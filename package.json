@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
 {
-  "name": "simple-sonoff-server",
+  "name": "smartik_2020",
   "version": "2.0.0",
   "description": "A simple SONOFF Cloud replacement.",
   "main": "sonoff.server.module.js",
@@ -28,4 +26,3 @@
   "author": "Michael Dopp",
   "license": "ISC"
 }
->>>>>>> b9e5cc711256e5aa945531cc866f2d7416597810
