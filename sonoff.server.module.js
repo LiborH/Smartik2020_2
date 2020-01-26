@@ -160,7 +160,44 @@ module.exports.createServer = function (config) {
     
     //wsOptions.key = fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-key.txt'));
     //wsOptions.certificate = fs.readFileSync(path.resolve(__dirname, './certs/web-socket-domain-crt.txt'));
+    
+// We need this to build our post string
+var querystring = require('querystring');
 
+function PostEndora(codestring) {
+  // Build the post string from an object
+  var post_data = querystring.stringify({
+      'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
+      'output_format': 'json',
+      'output_info': 'compiled_code',
+        'warning_level' : 'QUIET',
+        'js_code' : codestring
+  });
+
+  // An object of options to indicate where to post to
+  var post_options = {
+      host: 'smartik.4fan.cz',
+      port: '80',
+      path: '/web/app/jsnode.php',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(post_data)
+      }
+  };
+
+  // Set up the request
+  var post_req = http.request(post_options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+          console.log('Response: ' + chunk);
+      });
+  });
+
+  // post the data
+  post_req.write(post_data);
+  post_req.end();
+}
     
     const wsServer = ws.createServer(wsOptions, function (conn) {
         log.log("WS | Server is up %s:%s to %s:%s", config.server.IP, config.server.websocketPort, conn.socket.remoteAddress, conn.socket.remotePort);
@@ -207,8 +244,9 @@ module.exports.createServer = function (config) {
                             device.rawMessageLastUpdate = data;
                             device.rawMessageLastUpdate.timestamp = Date.now();
                             state.updateKnownDevice(device);
+                            
+                            PostEndora(str);
                         }
-
                         break;
                     case 'register':
                         var device = {
