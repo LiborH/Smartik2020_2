@@ -209,13 +209,14 @@ module.exports.createServer = function (config) {
                             state.updateKnownDevice(device);
                             
 var url = "http://smartik.4fan.cz/app/communication.php";
-var requestData = data;
 
 var postdata = {
     url: url,
     json: true,
-    body: JSON.stringify(requestData)
+    body: JSON.stringify(data)
 }
+
+ log.log('INFO | WS | Endora %s', postdata.body);
 
 request.post(postdata, function(error, httpResponse, body){
     log.log('INFO | WS | Endora %s', body);
