@@ -64,23 +64,8 @@ server.get('/devices/:deviceId/:state', function (req, res) {
     if (!d || d == "disconnected") {
         res.status(404).send('Sonoff device ' + req.params.deviceId + ' not found');
     } else {
-        switch (req.params.state.toUpperCase()) {
-            case "1":
-            case "ON":
-                res.sendStatus(200);
-                devices.turnOnDevice(req.params.deviceId);
-                break;
-            case "0":
-            case "OFF":
-                res.sendStatus(200);
-                devices.turnOffDevice(req.params.deviceId);
-                break;
-            default:
-                res.sendStatus(200);
-                devices.updateDevice(req.params.deviceId, req.params.state.toUpperCase());
-                break;
-                //res.status(404).send('Sonoff device ' + req.params.deviceId + ' can not be switched to "' + req.params.state + '", only "ON" and "OFF" are supported currently');
-        }
+        res.sendStatus(200);
+        devices.updateDevice(req.params.deviceId, req.params.state.toUpperCase());
     }
 });
 
