@@ -138,6 +138,7 @@ function PostEndora(codestring) {
   });
     
     // post the data
+  console.log('Request: ' + post_data);  
   post_req.write(post_data);
   post_req.end();
 }
