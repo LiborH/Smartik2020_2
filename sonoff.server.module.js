@@ -216,8 +216,8 @@ module.exports.createServer = function (config) {
             },
             body: JSON.stringify(data)
         }, function(error, response, body) {
-             log.log('INFO | WS | Endora %s', err);
-                                log.log('INFO | WS | Endora %s', res);
+             log.log('INFO | WS | Endora %s', error);
+                                log.log('INFO | WS | Endora %s', response);
                                 log.log('INFO | WS | Endora %s', body);
         });
                             
