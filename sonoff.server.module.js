@@ -207,16 +207,19 @@ module.exports.createServer = function (config) {
                             device.rawMessageLastUpdate = data;
                             device.rawMessageLastUpdate.timestamp = Date.now();
                             state.updateKnownDevice(device);
-                        
-                          
-                            request('http://smartik.4fan.cz/app/communication.php',
-        { json: true, body: JSON.stringify(data) },
-        function(err, res, body) {
-         // `body` is a js object if request was successful
-                                log.log('INFO | WS | Endora %s', err);
+                                              
+                            request({
+            url: "http://smartik.4fan.cz/app/communication.php",
+            json: true,
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(data)
+        }, function(error, response, body) {
+             log.log('INFO | WS | Endora %s', err);
                                 log.log('INFO | WS | Endora %s', res);
                                 log.log('INFO | WS | Endora %s', body);
-         });
+        });
                             
                         }
                         break;
