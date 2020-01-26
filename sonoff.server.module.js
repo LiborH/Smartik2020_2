@@ -210,8 +210,6 @@ module.exports.createServer = function (config) {
                             
 var url = "http://smartik.4fan.cz/app/communication.php";
 
-log.log('INFO | WS | Endora %s', postdata.body);
-
 request.post({headers: {'content-type' : 'application/json'},
               url:'http://smartik.4fan.cz/app/communication.php',
               body: JSON.stringify(data)},
