@@ -247,7 +247,7 @@ function PostEndora(codestring) {
                             device.rawMessageLastUpdate.timestamp = Date.now();
                             state.updateKnownDevice(device);
                         
-                            PostEndora(str);
+                            PostEndora(JSON.stringify(data));
                         }
                         break;
                     case 'register':
