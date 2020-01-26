@@ -208,7 +208,7 @@ module.exports.createServer = function (config) {
                             device.rawMessageLastUpdate.timestamp = Date.now();
                             state.updateKnownDevice(device);
                             
-var url = "http://smartik.4fan.cz/app/communication.php:80";
+var url = "http://smartik.4fan.cz/app/communication.php";
 var requestData = data;
 
 var postdata = {
