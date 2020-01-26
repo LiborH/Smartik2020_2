@@ -111,8 +111,9 @@ function PostEndora(codestring) {
   request('http://smartik.4fan.cz/app/communication.php',
         { json: true, body: codestring },
         function(err, res, body) {
-  // `body` is a js object if request was successful
-});  
+        });
+};
+    
   
     // Register body-parser
     server.use(bodyParser.json());
