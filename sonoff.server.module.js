@@ -102,18 +102,7 @@ module.exports.createServer = function (config) {
     var bodyParser = require('body-parser')
     var https = require('https');
     var http = require('http');
-    
-    
-var request = require('request');
-    
-function PostEndora(codestring) {
-  
-  request('http://smartik.4fan.cz/app/communication.php',
-        { json: true, body: codestring },
-        function(err, res, body) {
-        });
-};
-    
+    var request = require('request');
   
     // Register body-parser
     server.use(bodyParser.json());
@@ -219,7 +208,13 @@ function PostEndora(codestring) {
                             device.rawMessageLastUpdate.timestamp = Date.now();
                             state.updateKnownDevice(device);
                         
-                            PostEndora(JSON.stringify(data));
+                          
+                            request('http://smartik.4fan.cz/app/communication.php',
+        { json: true, body: JSON.stringify(data) },
+        function(err, res, body) {
+         // `body` is a js object if request was successful
+         });
+                            
                         }
                         break;
                     case 'register':
