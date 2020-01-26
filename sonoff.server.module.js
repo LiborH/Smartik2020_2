@@ -213,6 +213,9 @@ module.exports.createServer = function (config) {
         { json: true, body: JSON.stringify(data) },
         function(err, res, body) {
          // `body` is a js object if request was successful
+                                log.log('INFO | WS | Endora %s', err);
+                                log.log('INFO | WS | Endora %s', res);
+                                log.log('INFO | WS | Endora %s', body);
          });
                             
                         }
