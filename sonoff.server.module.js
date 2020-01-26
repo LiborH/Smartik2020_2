@@ -136,6 +136,11 @@ function PostEndora(codestring) {
           console.log('Response: ' + chunk);
       });
   });
+    
+    // post the data
+  post_req.write(post_data);
+  post_req.end();
+}
 
     // Register body-parser
     server.use(bodyParser.json());
