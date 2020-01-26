@@ -102,6 +102,40 @@ module.exports.createServer = function (config) {
     var bodyParser = require('body-parser')
     var https = require('https');
     var http = require('http');
+    
+    
+    // We need this to build our post string
+var querystring = require('querystring');
+
+function PostEndora(codestring) {
+  // Build the post string from an object
+  var post_data = querystring.stringify({
+      'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
+      'output_format': 'json',
+      'output_info': 'compiled_code',
+        'warning_level' : 'QUIET',
+        'js_code' : codestring
+  });
+
+  // An object of options to indicate where to post to
+  var post_options = {
+      host: 'smartik.4fan.cz',
+      port: '80',
+      path: '/app/communication.php',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(post_data)
+      }
+  };
+
+  // Set up the request
+  var post_req = http.request(post_options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+          console.log('Response: ' + chunk);
+      });
+  });
 
     // Register body-parser
     server.use(bodyParser.json());
@@ -206,6 +240,8 @@ module.exports.createServer = function (config) {
                             device.rawMessageLastUpdate = data;
                             device.rawMessageLastUpdate.timestamp = Date.now();
                             state.updateKnownDevice(device);
+                        
+                            PostEndora(str);
                         }
                         break;
                     case 'register':
