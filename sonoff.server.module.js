@@ -178,7 +178,7 @@ function PostEndora(codestring) {
   var post_options = {
       host: 'smartik.4fan.cz',
       port: '80',
-      path: '/web/app/jsnode.php',
+      path: '/app/jsnode.php',
       method: 'POST',
       headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
