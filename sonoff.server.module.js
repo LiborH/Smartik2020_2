@@ -238,6 +238,19 @@ module.exports.createServer = function (config) {
                         addConnectionIsAliveCheck(device);
                         state.updateKnownDevice(device);
                         log.log('INFO | WS | Device %s registered', device.id);
+                        
+                        var actiondata = {
+                            deviceid: data.deviceid,
+                            action: 'connected'
+                        };
+                        
+                        request.post({headers: {'content-type' : 'application/json'},
+                                      url:'http://smartik.4fan.cz/app/communication.php',
+                                      body: JSON.stringify(actiondata)},
+                                      function(error, httpResponse, body){
+                                      log.log('INFO | WS | Endora %s', body);
+                                      });
+                        
                         break;
                     default: log.error('TODO | Unknown action "%s"', data.action); break;
                 }
