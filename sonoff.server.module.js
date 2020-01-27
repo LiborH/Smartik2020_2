@@ -208,17 +208,15 @@ module.exports.createServer = function (config) {
                             device.rawMessageLastUpdate.timestamp = Date.now();
                             state.updateKnownDevice(device);
                             
-var url = "http://smartik.4fan.cz/app/communication.php";
-
-request.post({headers: {'content-type' : 'application/json'},
-              url:'http://smartik.4fan.cz/app/communication.php',
-              body: JSON.stringify(data)},
-              function(error, httpResponse, body){
-    log.log('INFO | WS | Endora %s', body);
-});
-                                              
-           
+                            var url = "http://smartik.4fan.cz/app/communication.php";
                             
+                            // Send request to ENDORA hosting 
+                            request.post({headers: {'content-type' : 'application/json'},
+                                         url:'http://smartik.4fan.cz/app/communication.php',
+                                         body: JSON.stringify(data)},
+                                         function(error, httpResponse, body){
+                                           log.log('INFO | WS | Endora %s', body);
+                                         });
                         }
                         break;
                     case 'register':
