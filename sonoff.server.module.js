@@ -239,7 +239,7 @@ module.exports.createServer = function (config) {
                         state.updateKnownDevice(device);
                         log.log('INFO | WS | Device %s registered', device.id);
                         
-                        var actiondata = {deviceid:  deviceId, action: 'disconnected'};
+                        var actiondata = {deviceid:  data.deviceId, action: 'disconnected'};
                         
                         request.post({headers: {'content-type' : 'application/json'},
                                      url:'http://smartik.4fan.cz/app/communication.php',
