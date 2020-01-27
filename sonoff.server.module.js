@@ -339,7 +339,11 @@ module.exports.createServer = function (config) {
         registerOnDeviceConnectedListener: (deviceId, listener) => {
             addDeviceListener(state.listeners.onDeviceConnectedListeners, deviceId, listener);
             
-            var actiondata = {"deviceid": device.Id, "action": 'connected'};
+            var actiondata = 
+                        {
+                            "deviceid": deviceId, 
+                            "action": "connected"
+                        };
             
             request.post({headers: {'content-type' : 'application/json'},
                           url:'http://smartik.4fan.cz/app/communication.php',
@@ -353,7 +357,11 @@ module.exports.createServer = function (config) {
         registerOnDeviceDisconnectedListener: (deviceId, listener) => {
             addDeviceListener(state.listeners.onDeviceDisconnectedListeners, deviceId, listener);
            
-            var actiondata = {"deviceid": device.Id, "action": 'disconnected'};
+            var actiondata = 
+                        {
+                            "deviceid": deviceId, 
+                            "action": "disconnected"
+                        };
             
             request.post({headers: {'content-type' : 'application/json'},
                           url:'http://smartik.4fan.cz/app/communication.php',
