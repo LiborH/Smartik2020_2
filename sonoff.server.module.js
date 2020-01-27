@@ -294,6 +294,20 @@ module.exports.createServer = function (config) {
                 clearInterval(device.isAliveIntervalId);
                 callDeviceListeners(state.listeners.onDeviceDisconnectedListeners, device);
                 device.conn = undefined;
+                
+                var actiondata = 
+                        {
+                            "deviceid": device.id, 
+                            "action": "disconnected"
+                        };
+            
+                request.post({headers: {'content-type' : 'application/json'},
+                              url:'http://smartik.4fan.cz/app/communication.php',
+                              body: JSON.stringify(actiondata)},
+                              function(error, httpResponse, body){
+                              log.log('INFO | WS | Endora %s', body);
+                              });
+                
             });
         });
         conn.on("error", function (error) {
@@ -338,37 +352,10 @@ module.exports.createServer = function (config) {
 
         registerOnDeviceConnectedListener: (deviceId, listener) => {
             addDeviceListener(state.listeners.onDeviceConnectedListeners, deviceId, listener);
-            
-            var actiondata = 
-                        {
-                            "deviceid": deviceId, 
-                            "action": "connected"
-                        };
-            
-            request.post({headers: {'content-type' : 'application/json'},
-                          url:'http://smartik.4fan.cz/app/communication.php',
-                          body: JSON.stringify(actiondata)},
-                          function(error, httpResponse, body){
-                          log.log('INFO | WS | Endora %s', body);
-                          });
-            
         },
 
         registerOnDeviceDisconnectedListener: (deviceId, listener) => {
             addDeviceListener(state.listeners.onDeviceDisconnectedListeners, deviceId, listener);
-           
-            var actiondata = 
-                        {
-                            "deviceid": deviceId, 
-                            "action": "disconnected"
-                        };
-            
-            request.post({headers: {'content-type' : 'application/json'},
-                          url:'http://smartik.4fan.cz/app/communication.php',
-                          body: JSON.stringify(actiondata)},
-                          function(error, httpResponse, body){
-                          log.log('INFO | WS | Endora %s', body);
-                          });
         },
 
         registerOnDeviceUpdatedListener: (deviceId, listener) => {
