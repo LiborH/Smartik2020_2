@@ -291,6 +291,20 @@ module.exports.createServer = function (config) {
                 if (device.conn != conn)
                     return;
                 log.log("Device %s disconnected", device.id);
+                
+                var actiondata = 
+                        {
+                            "deviceid": device.id, 
+                            "action": "disconnected"
+                        };
+            
+                        request.post({headers: {'content-type' : 'application/json'},
+                                     url:'http://smartik.4fan.cz/app/communication.php',
+                                     body: JSON.stringify(actiondata)},
+                                     function(error, httpResponse, body){
+                                     log.log('INFO | WS | Endora %s', body);
+                                     });
+                
                 clearInterval(device.isAliveIntervalId);
                 callDeviceListeners(state.listeners.onDeviceDisconnectedListeners, device);
                 device.conn = undefined;                
