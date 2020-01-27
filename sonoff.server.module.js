@@ -239,7 +239,11 @@ module.exports.createServer = function (config) {
                         state.updateKnownDevice(device);
                         log.log('INFO | WS | Device %s registered', device.id);
                         
-                        var actiondata = {"deviceid": device.Id, "action": 'connected'};
+                        var actiondata = 
+                        {
+                            "deviceid": device.id, 
+                            "action": "connected"
+                        };
             
                         request.post({headers: {'content-type' : 'application/json'},
                                      url:'http://smartik.4fan.cz/app/communication.php',
