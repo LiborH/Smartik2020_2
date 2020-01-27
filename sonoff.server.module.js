@@ -293,21 +293,7 @@ module.exports.createServer = function (config) {
                 log.log("Device %s disconnected", device.id);
                 clearInterval(device.isAliveIntervalId);
                 callDeviceListeners(state.listeners.onDeviceDisconnectedListeners, device);
-                device.conn = undefined;
-                
-                var actiondata = 
-                        {
-                            "deviceid": device.id, 
-                            "action": "disconnected"
-                        };
-            
-                request.post({headers: {'content-type' : 'application/json'},
-                              url:'http://smartik.4fan.cz/app/communication.php',
-                              body: JSON.stringify(actiondata)},
-                              function(error, httpResponse, body){
-                              log.log('INFO | WS | Endora %s', body);
-                              });
-                
+                device.conn = undefined;                
             });
         });
         conn.on("error", function (error) {
